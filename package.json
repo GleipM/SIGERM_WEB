@@ -16,6 +16,7 @@
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
+    "react-rating-stars-component": "^2.2.0",
     "react-router-dom": "^7.4.0",
     "victory": "^37.3.6",
     "yup": "^1.6.1"

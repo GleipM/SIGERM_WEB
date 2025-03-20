@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from './Sidebar'; // Importa el Sidebar
 
-const mesas = [
+const initialMesas = [
   { img: 'https://via.placeholder.com/50', mesa: 'Mesa_01', capacidad: '4 Personas', estado: 'Habilitada' },
   { img: 'https://via.placeholder.com/50', mesa: 'Mesa_02', capacidad: '2 Personas', estado: 'Habilitada' },
   { img: 'https://via.placeholder.com/50', mesa: 'Mesa_03', capacidad: '6 Personas', estado: 'Inhabilitada' },
@@ -10,6 +10,15 @@ const mesas = [
 ];
 
 function GestionMesas() {
+  const [mesasData, setMesasData] = useState(initialMesas);
+
+  // Maneja el cambio de estado de la mesa
+  const toggleEstado = (index) => {
+    const updatedMesas = [...mesasData];
+    updatedMesas[index].estado = updatedMesas[index].estado === 'Habilitada' ? 'Inhabilitada' : 'Habilitada';
+    setMesasData(updatedMesas);
+  };
+
   return (
     <div className="d-flex">
       {/* Sidebar */}
@@ -33,13 +42,16 @@ function GestionMesas() {
             </tr>
           </thead>
           <tbody>
-            {mesas.map((mesa, index) => (
+            {mesasData.map((mesa, index) => (
               <tr key={index}>
                 <td><img src={mesa.img} alt={mesa.mesa} className="rounded" width="50" /></td>
                 <td>{mesa.mesa}</td>
                 <td>{mesa.capacidad}</td>
                 <td>
-                  <button className={`btn ${mesa.estado === 'Habilitada' ? 'btn-outline-success' : 'btn-outline-secondary'}`}>
+                  <button
+                    className={`btn ${mesa.estado === 'Habilitada' ? 'btn-outline-success' : 'btn-outline-secondary'}`}
+                    onClick={() => toggleEstado(index)} // Cambia el estado al hacer clic
+                  >
                     {mesa.estado}
                   </button>
                 </td>

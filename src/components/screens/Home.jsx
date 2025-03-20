@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { VictoryBar, VictoryPie } from 'victory';
 import { data } from '../utils/informe';
+import {ingresosData} from './../utils/informe'
 import Sidebar from './Sidebar'; // Importa el Sidebar
 
 const pieData = [
@@ -11,7 +12,7 @@ const pieData = [
 
 function AdminPanel() {
   return (
-    <div className="d-flex">
+    <div className="d-flex bg-light">
       {/* Sidebar */}
       <Sidebar />
 
@@ -39,21 +40,24 @@ function AdminPanel() {
           <thead className="table-dark">
             <tr>
               <th>Día</th>
-              <th>Ingresos Día ($)</th>
-              <th>Ingresos Tarde ($)</th>
-              <th>Total ($)</th>
+              <th>Ingresos Día</th>
+              <th>Ingresos Tarde </th>
+              <th>Total</th>
               <th>Clientes Día</th>
               <th>Clientes Tarde</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>Lunes</td><td>2500</td><td>1500</td><td>4000</td><td>120</td><td>90</td></tr>
-            <tr><td>Martes</td><td>500</td><td>300</td><td>800</td><td>40</td><td>30</td></tr>
-            <tr><td>Miércoles</td><td>600</td><td>400</td><td>1000</td><td>50</td><td>40</td></tr>
-            <tr><td>Jueves</td><td>2000</td><td>1500</td><td>3500</td><td>100</td><td>80</td></tr>
-            <tr><td>Viernes</td><td>800</td><td>1200</td><td>2000</td><td>70</td><td>60</td></tr>
-            <tr><td>Sábado</td><td>2800</td><td>1700</td><td>4500</td><td>150</td><td>120</td></tr>
-            <tr><td>Domingo</td><td>5000</td><td>3000</td><td>8000</td><td>200</td><td>180</td></tr>
+            {ingresosData.map((ingreso, index) => (
+              <tr key={index}>
+                <td>{ingreso.dia}</td>
+                <td>{ingreso.ingresosDia}</td>
+                <td>{ingreso.ingresosTarde}</td>
+                <td>{ingreso.total}</td>
+                <td>{ingreso.clientesDia}</td>
+                <td>{ingreso.clientesTarde}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

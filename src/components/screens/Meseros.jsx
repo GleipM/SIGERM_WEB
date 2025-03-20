@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from './Sidebar'; // Importa el Sidebar
 
@@ -10,6 +10,15 @@ const meseros = [
 ];
 
 function GestionMeseros() {
+  const [meserosData, setMeserosData] = useState(meseros);
+
+  // Maneja el cambio de tipo
+  const handleTipoChange = (index, newTipo) => {
+    const updatedMeseros = [...meserosData];
+    updatedMeseros[index].tipo = newTipo;
+    setMeserosData(updatedMeseros);
+  };
+
   return (
     <div className="d-flex">
       {/* Sidebar */}
@@ -34,14 +43,21 @@ function GestionMeseros() {
             </tr>
           </thead>
           <tbody>
-            {meseros.map((mesero, index) => (
+            {meserosData.map((mesero, index) => (
               <tr key={index}>
                 <td><img src={mesero.img} alt={mesero.nombre} className="rounded" width="50" /></td>
                 <td>{mesero.nombre}</td>
                 <td>{mesero.correo}</td>
                 <td>******</td>
                 <td>
-                  <button className="btn btn-outline-danger">{mesero.tipo}</button>
+                  <select
+                    className="form-select"
+                    value={mesero.tipo}
+                    onChange={(e) => handleTipoChange(index, e.target.value)}
+                  >
+                    <option value="líder">Líder</option>
+                    <option value="mesero">Mesero</option>
+                  </select>
                 </td>
               </tr>
             ))}
