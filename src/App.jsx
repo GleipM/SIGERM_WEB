@@ -1,30 +1,28 @@
-import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Login from './components/screens/Login'
-import Home from './components/screens/Home'
-import Meseros from './components/screens/Meseros'
-import Mesas from './components/screens/Mesas'
-import Categorias from './components/screens/Categorias'
-import Menu from './components/screens/Menu'
-import Reseñas from './components/screens/Reseñas'
-
+import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Sidebar from './components/screens/Sidebar';
+import Login from './components/screens/Login';
+import Home from './components/screens/Home';
+import Meseros from './components/screens/Meseros';
+import Mesas from './components/screens/Mesas';
 
 function App() {
+  return (
+    <Router>
+      <div className="d-flex">
 
-
-    return (
-        <Router>
-            <Routes>
-                <Route path='/' element= {<Login/>}></Route>
-                <Route path="/Home" element={<Home />}></Route>
-                <Route path="/Meseros" element={<Meseros />}></Route>
-                <Route path="/Mesas" element={<Mesas />}></Route>
-                <Route path="/Categorias" element={<Categorias />}></Route>
-                <Route path="/Menu" element={<Menu />}></Route>
-                <Route path="/Reseñas" element={<Reseñas />}></Route>
-            </Routes>
-        </Router>
-    )
+        {/* Main Content */}
+        <div className="container-fluid">
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/meseros" element={<Meseros />} />
+            <Route path="/mesas" element={<Mesas />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;
